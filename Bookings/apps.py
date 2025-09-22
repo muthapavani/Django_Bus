@@ -1,4 +1,6 @@
 from django.apps import AppConfig
+from django.contrib.auth import get_user_model
+from django.db.utils import OperationalError
 
 class BookingsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -6,10 +8,8 @@ class BookingsConfig(AppConfig):
 
     def ready(self):
         import Bookings.signals
-        from django.db.models.signals import post_migrate
-        from django.contrib.auth import get_user_model
 
-        def create_default_superuser(sender, **kwargs):
+        try:
             User = get_user_model()
             if not User.objects.filter(username='admin').exists():
                 User.objects.create_superuser(
@@ -17,5 +17,7 @@ class BookingsConfig(AppConfig):
                     email='admin@example.com',
                     password='AdminPassword123'
                 )
-
-        post_migrate.connect(create_default_superuser, sender=self)
+        except OperationalError:
+            pass
+        except Exception as e:
+            print(f"Skipping superuser creation: {e}")
