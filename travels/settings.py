@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+8g&q*_83g$=c$(+5n+w*xq%+c)2h#$!-sif()c@9s6jwrj(a-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["django-bus-backend.onrender.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'travels.urls'
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost", "https://django-bus-backend.onrender.com", "http://127.0.0.1"
 ]
 
 TEMPLATES = [
