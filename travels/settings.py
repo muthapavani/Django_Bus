@@ -70,7 +70,10 @@ ROOT_URLCONF = 'travels.urls'
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost", "https://django-bus-backend.onrender.com", "http://127.0.0.1"
+    "http://localhost:5173",          
+    "http://127.0.0.1:5173",           
+    "https://django-bus-backend.onrender.com", 
+    "https://react-bus.vercel.app", 
 ]
 
 TEMPLATES = [
